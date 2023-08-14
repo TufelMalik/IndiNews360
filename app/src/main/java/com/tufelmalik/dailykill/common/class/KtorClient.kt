@@ -14,14 +14,16 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 
-object KtorClient {
 
+object KtorClient {
+    // JSON configuration
     val json = Json {
         encodeDefaults = true
         ignoreUnknownKeys = true
         isLenient = true
     }
 
+    // Initialization the HTTP client
     val httpClient = HttpClient(Android) {
         install(HttpTimeout) {
             socketTimeoutMillis = 30000
@@ -41,11 +43,9 @@ object KtorClient {
             }
         }
 
-
         defaultRequest {
             contentType(ContentType.Application.Json)
             accept(ContentType.Application.Json)
         }
-
     }
 }
