@@ -1,42 +1,27 @@
 package com.tufelmalik.dailykill.data.repository
 
-import com.tufelmalik.dailykill.common.Constants
-import com.tufelmalik.dailykill.common.`class`.KtorClient
 import com.tufelmalik.dailykill.data.model.Article
-import io.ktor.client.call.receive
-import io.ktor.client.features.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.HttpResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import com.tufelmalik.dailykill.data.model.NewsModel
+import com.tufelmalik.dailykill.data.utilities.ApiInstance
+import com.tufelmalik.dailykill.data.utilities.ApiService
 
-class NewsRepository {
+class NewsRepository(private val apiInterface: ApiService) {
 
-    private val apiLink = Constants.api_link
+    suspend fun getAllIndiaNews(): NewsModel? {
+        val response = apiInterface.getAllIndianNews()
+        return if (response.isSuccessful) {
+            response.body()
+        } else {
+            null
+        }
+    }
 
-    suspend fun getAllNews(): List<Article> {
-        return withContext(Dispatchers.IO) {
-            val httpClient = KtorClient.httpClient
-
-            try {
-                val response: HttpResponse = httpClient.get(apiLink)
-
-                // Deserialize the JSON response using response.body()
-                val responseBody = response.receive<String>()
-                if (responseBody.isNotEmpty()) {
-                    return@withContext Json.decodeFromString<List<Article>>(responseBody)
-                } else {
-                    // Handle empty response body
-                    return@withContext emptyList()
-                }
-            } catch (e: Exception) {
-                // Handle API request or JSON deserialization errors
-                return@withContext emptyList()
-            } finally {
-                httpClient.close()
-            }
+    suspend fun getAllUSANews(): NewsModel? {
+        val response = apiInterface.getAllUSANews()
+        return if (response.isSuccessful) {
+            response.body()
+        } else {
+            null
         }
     }
 }

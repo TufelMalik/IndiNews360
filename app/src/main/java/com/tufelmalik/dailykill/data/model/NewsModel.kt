@@ -2,7 +2,7 @@ package com.tufelmalik.dailykill.data.model
 
 import kotlinx.serialization.Serializable
 
-@Serializable
+//@Serializable
 data class NewsModel(
     val articles: List<Article>,
     val status: String,
