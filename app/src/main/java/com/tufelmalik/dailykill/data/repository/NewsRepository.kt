@@ -1,27 +1,28 @@
 package com.tufelmalik.dailykill.data.repository
 
-import com.tufelmalik.dailykill.data.model.Article
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.tufelmalik.dailykill.data.model.NewsModel
-import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.data.utilities.ApiService
 
 class NewsRepository(private val apiInterface: ApiService) {
+    private val _indiaNews = MutableLiveData<NewsModel>()
+    private val _usaNews = MutableLiveData<NewsModel>()
 
-    suspend fun getAllIndiaNews(): NewsModel? {
-        val response = apiInterface.getAllIndianNews()
-        return if (response.isSuccessful) {
-            response.body()
-        } else {
-            null
+    val indiaNews: LiveData<NewsModel> get() = _indiaNews
+    val usaNews: LiveData<NewsModel> get() = _usaNews
+
+    suspend fun getAllIndiaNews() {
+        val result = apiInterface.getAllIndianNews()
+        if (result?.body() != null) {
+            _indiaNews.postValue(result.body())
         }
     }
 
-    suspend fun getAllUSANews(): NewsModel? {
-        val response = apiInterface.getAllUSANews()
-        return if (response.isSuccessful) {
-            response.body()
-        } else {
-            null
+    suspend fun getAllUSANews() {
+        val result = apiInterface.getAllUSANews()
+        if (result?.body() != null) {
+            _usaNews.postValue(result.body())
         }
     }
 }

@@ -1,14 +1,13 @@
 package com.tufelmalik.dailykill.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.FragmentSavedNewsBinding
@@ -25,7 +24,7 @@ class SavedNewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
        binding = FragmentSavedNewsBinding.inflate(layoutInflater)
         val apiService = ApiInstance.apiInterface
         val newsRepository = NewsRepository(apiService)
@@ -40,7 +39,7 @@ class SavedNewsFragment : Fragment() {
             adapter = newsAdapter
         }
 
-        viewModel.usaNewsLiveData.observe(viewLifecycleOwner) { newsModel ->
+        viewModel.usaNews.observe(viewLifecycleOwner) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
             Toast.makeText(requireContext(),"Size : ${articleList.size}", Toast.LENGTH_LONG).show()
             newsAdapter.updateData(articleList)

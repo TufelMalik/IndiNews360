@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tufelmalik.dailykill.data.repository.NewsRepository
@@ -17,7 +18,6 @@ import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
-    private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
@@ -28,22 +28,23 @@ class NewsFragment : Fragment() {
 
         val apiService = ApiInstance.apiInterface
         val newsRepository = NewsRepository(apiService)
-
-        viewModel = ViewModelProvider(this, NewsViewModelFactory(newsRepository))
-            .get(NewsViewModel::class.java)
-
-        newsAdapter = NewsAdapter(requireContext(), emptyList())
-
-        binding.newsRecycler.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = newsAdapter
+        val viewModel: NewsViewModel by viewModels {
+            NewsViewModelFactory(newsRepository)
         }
 
-        viewModel.indiaNewsLiveData.observe(viewLifecycleOwner) { newsModel ->
+
+        viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
             Toast.makeText(requireContext(),"Size : ${articleList.size}",Toast.LENGTH_LONG).show()
+            newsAdapter = NewsAdapter(requireContext(),articleList)
             newsAdapter.updateData(articleList)
+            binding.newsRecycler.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = newsAdapter
+            }
         }
+
+
 
         return binding.root
     }
