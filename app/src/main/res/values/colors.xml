@@ -30,4 +30,11 @@
     <color name="articlecolor">#3399FF</color>
     <color name="article_title">#3399FF</color>
     <color name="cachecolor">#8ad0e8</color>
+    <color name="shimmer_placeholder">#D5D5D5</color>
+    <color name="progressBarBackground">#E0E0E0</color>
+    <color name="progressBarColor">#4CAF50</color>
+    <color name="light_gray">#5E999999</color>
+
+
+
 </resources>

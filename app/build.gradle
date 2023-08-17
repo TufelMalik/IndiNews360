@@ -100,6 +100,14 @@ dependencies {
     // Coroutines for asynchronous programming
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2"
 
+    //  Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //  Lootie Animation
+    implementation "com.airbnb.android:lottie:4.2.0"
+
+
+
     //Dagger and Dependency Injection
     //    implementation 'com.google.dagger:hilt-android:2.38.1'
     //    kapt 'com.google.dagger:hilt-compiler:2.38.1'

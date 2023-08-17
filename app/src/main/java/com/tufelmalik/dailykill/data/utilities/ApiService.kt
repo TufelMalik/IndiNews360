@@ -12,6 +12,8 @@ interface ApiService {
     @GET(Constants.INDIA_KEY)
     suspend fun getAllIndianNews(): Response<NewsModel>
 
+
+
     @GET(Constants.USA_KEY)
     suspend fun getAllUSANews(): Response<NewsModel>
 }

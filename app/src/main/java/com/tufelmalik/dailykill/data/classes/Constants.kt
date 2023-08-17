@@ -1,5 +1,9 @@
 package com.tufelmalik.dailykill.data.classes
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+
 object Constants {
 
 
@@ -11,5 +15,15 @@ object Constants {
     const val INDIA_KEY = "top-headlines?country=in&category=business&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"
     const val BASE_URL = "https://newsapi.org/v2/"
     const val API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a"
+
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkCapabilities = connectivityManager.activeNetwork ?: return false
+        val activeNetwork = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+        return activeNetwork.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
 
 }

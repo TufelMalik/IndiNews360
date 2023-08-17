@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.NewsFragment">
 
@@ -12,26 +12,146 @@
         android:layout_height="match_parent">
 
 
+        <HorizontalScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/notFound_animation_NewsFrag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:isScrollContainer="true"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <RadioButton
+                    android:id="@id/rbEntertainment_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:button="@drawable/tab_bg"
+                    android:checked="true"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/business"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+                <RadioButton
+                    android:id="@+id/rbEntertainment_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:background="@drawable/corner"
+                    android:button="@drawable/tab_bg"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/entertainment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+                <RadioButton
+                    android:id="@+id/rbHealth_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:background="@drawable/corner"
+                    android:button="@drawable/tab_bg"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/health"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+                <RadioButton
+                    android:id="@+id/rbScirnce_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:background="@drawable/corner"
+                    android:button="@drawable/tab_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/science"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+                <RadioButton
+                    android:id="@+id/rbSports_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:background="@drawable/corner"
+                    android:button="@drawable/tab_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/sports"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+                <RadioButton
+                    android:id="@+id/ebTechnology_nf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:background="@drawable/corner"
+                    android:button="@drawable/tab_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/technology"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+
+            </RadioGroup>
+
+        </HorizontalScrollView>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/newsRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/white"
             android:clipToPadding="false"
             android:paddingBottom="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
             tools:listitem="@layout/news_layout" />
 
         <ProgressBar
             android:id="@+id/newsProgressBar"
-            style="?attr/progressBarStyle"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/teal"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,14 +160,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/notFound_animation_NewsFrag"
+            android:layout_width="300dp"
+            android:layout_height="347dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/no_internet_animation" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#00FFFFFF"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_20sdp"
+            app:cardElevation="@dimen/_60sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:background="@drawable/corner"
+                android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="@dimen/_15sdp"
                 android:hint="Search News"

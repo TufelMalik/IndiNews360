@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:shimmer_auto_start="true">
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/corner"
+            android:backgroundTint="@color/white"
+            android:padding="10dp">
+
+            <!-- Placeholder ImageView for shimmer animation -->
+            <View
+                android:id="@+id/ivArticleImageShimmer"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="90dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!-- Apply shimmer effect here -->
+
+            <!-- Apply shimmer effect here -->
+
+            <!-- Placeholder TextView for shimmer animation -->
+
+            <!-- Placeholder TextView for shimmer animation -->
+
+            <View
+                android:id="@+id/ivArticleImageShimdmer"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/ivArticleImageShimmer"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/ivArticleImageShimdmer2"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintStart_toEndOf="@+id/ivArticleImageShimmer"
+                app:layout_constraintTop_toBottomOf="@+id/ivArticleImageShimdmer" />
+
+            <View
+                android:id="@+id/tvDescriptionShimmer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@color/shimmer_placeholder"
+                android:ellipsize="end"
+                android:maxLines="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivArticleImageShimmer"
+                tools:layout_editor_absoluteY="687dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</LinearLayout>

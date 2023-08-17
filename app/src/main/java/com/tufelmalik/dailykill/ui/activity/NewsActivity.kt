@@ -45,9 +45,11 @@ class NewsActivity : AppCompatActivity() {
             for(i in articleList){
                 if(i.urlToImage == newsKey){
                     binding.apply {
-                        Glide.with(this@NewsActivity).load(i.urlToImage).into(binding.imgNewsNewsActivity)
+                        Glide.with(this@NewsActivity)
+                            .load(i.urlToImage)
+                            .thumbnail(Glide.with(this@NewsActivity).load(R.drawable.loading))
+                            .into(binding.imgNewsNewsActivity)
                         binding.txtTitleNewsActivity.text = i.title
-
                         binding.txtPublishedAtNewsActivity.text = i.publishedAt
                         binding.txtDescriptionNewsActivity.text = i.description
                         settingPublishedTime(i.publishedAt)
