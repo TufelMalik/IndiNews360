@@ -2,6 +2,8 @@ package com.tufelmalik.dailykill.data.classes
 
 object Constants {
 
+
+    //    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   ChatGTP APi Key
     const val NEWS_API_KEY = "f07962ab9a4e4883be33443776ac7e3a"
     const val CURRENT_WHEATHER_URL = "/current.json"
     const val WHEATHER_API_KEY = "c62eef365807446cab4175930231608"

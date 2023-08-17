@@ -33,6 +33,7 @@ class NewsFragment : Fragment() {
         }
 
 
+
         viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
             Toast.makeText(requireContext(),"Size : ${articleList.size}",Toast.LENGTH_LONG).show()
@@ -43,7 +44,6 @@ class NewsFragment : Fragment() {
                 adapter = newsAdapter
             }
         }
-
 
 
         return binding.root

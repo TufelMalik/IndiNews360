@@ -2,16 +2,23 @@ package com.tufelmalik.dailykill.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.tufelmalik.dailykill.R
+import com.tufelmalik.dailykill.data.repository.NewsRepository
+import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.ActivityMainBinding
 import com.tufelmalik.dailykill.ui.fragments.NewsFragment
 import com.tufelmalik.dailykill.ui.fragments.SavedNewsFragment
 import com.tufelmalik.dailykill.ui.fragments.WeatherFragment
+import com.tufelmalik.dailykill.viewmodel.NewsViewModel
+import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +27,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         replaceFragment(NewsFragment())
+
+        val apiService = ApiInstance.apiInterface
+        val newsRepository = NewsRepository(apiService)
+        val viewModel: NewsViewModel by viewModels {
+            NewsViewModelFactory(newsRepository)
+        }
+
+
 
         binding.bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
