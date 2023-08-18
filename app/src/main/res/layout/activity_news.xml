@@ -107,7 +107,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="TextView"
+                                android:text="@string/loading"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_18sdp"
                                 android:textStyle="bold" />
@@ -121,7 +121,7 @@
                             android:fontFamily="sans-serif-condensed-medium"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="250dp"
-                            android:text="2023-10-16"
+                            android:text="@string/loading"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_14sdp" />
 
@@ -153,7 +153,7 @@
                         android:layout_marginRight="@dimen/_15sdp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:text="Description writening in under writening.."
+                        android:text="@string/loading"
                         android:textAlignment="textStart"
                         android:textColor="@color/white"
                         android:textSize="20dp" />

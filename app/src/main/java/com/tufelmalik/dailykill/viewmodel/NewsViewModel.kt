@@ -23,6 +23,11 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
         fetchNewsData()
     }
 
+    suspend fun getIndianNewsByCategory(category: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getIndianNewsByCategory(category)
+        }
+    }
     private fun fetchNewsData() {
     viewModelScope.launch(Dispatchers.IO) {
         repository.getAllIndiaNews()

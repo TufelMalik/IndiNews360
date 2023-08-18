@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.databinding.NewsLayoutBinding
 import com.tufelmalik.dailykill.databinding.NewsShimmerLayoutBinding
@@ -79,7 +80,7 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
     inner class NewsViewHolder(private val binding: NewsLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             binding.tvTitle.text = article.title
-            Glide.with(context).load(article.urlToImage).into(binding.ivArticleImage)
+            Glide.with(context).load(article.urlToImage).thumbnail(Glide.with(context).load(R.drawable.loading)).into(binding.ivArticleImage)
             binding.tvDescription.text = article.description
             settingPublishedTime(binding.tvPublishedAt, article.publishedAt)
             try {
