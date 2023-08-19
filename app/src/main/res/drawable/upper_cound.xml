@@ -3,7 +3,11 @@
 
 
     <corners
-        android:topRightRadius="@dimen/_20sdp"
-        android:topLeftRadius="@dimen/_20sdp"
+        android:topRightRadius="@dimen/_25sdp"
+        android:topLeftRadius="@dimen/_25sdp"
+        />
+
+    <solid
+        android:color="@color/teal"
         />
 </shape>

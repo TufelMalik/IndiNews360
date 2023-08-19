@@ -51,7 +51,6 @@
                     android:text="Indina News"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_gravity="center"
-
                     android:textSize="@dimen/_18ssp"
                     android:textColor="@color/white"
                     />
@@ -65,6 +64,7 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:background="@drawable/corner"
                     android:layout_height="250dp"
+                    android:backgroundTint="@color/white"
                     android:layout_gravity="center"
                     tools:srcCompat="@tools:sample/avatars" />
 

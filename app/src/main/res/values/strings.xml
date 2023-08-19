@@ -4,9 +4,9 @@
     <string name="my_api_link">https://newsapi.org/v2/top-headlines?country=us&amp;apiKey=f07962ab9a4e4883be33443776ac7e3a</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home">Home</string>
-    <string name="Weather">Weather</string>
-    <string name="Favorite">Favorite</string>
+    <string name="news">News</string>
+    <string name="wheather">Wheather</string>
+    <string name="world">World</string>
     <string name="technology">Technology</string>
     <string name="sports">Sports</string>
     <string name="science">Science</string>

@@ -1,6 +1,9 @@
 package com.tufelmalik.dailykill.ui.fragments
 
 import android.os.Bundle
+import android.telecom.DisconnectCause.LOCAL
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
+import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.FragmentNewsBinding
@@ -22,6 +26,7 @@ import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -49,11 +54,12 @@ class NewsFragment : Fragment() {
         categoryList.add("technology")
 
 
-        checkUserNetworkState()
         //  set default value of tab -> business
         val defualtCategory = "business"
         changeTabBg(binding.rbBusinnessNf.id)
 
+        checkUserNetworkState()
+        searchNews()
 
         binding.tabGroupNf.setOnCheckedChangeListener { group, checkedId ->
             val selectedRadioButton = requireView().findViewById<RadioButton>(checkedId)
@@ -67,6 +73,40 @@ class NewsFragment : Fragment() {
 
         }
         return binding.root
+    }
+
+    lateinit var searchText : String
+    private fun searchNews() {
+        binding.etSearchNewsFrag.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                searchText = p0.toString().lowercase()
+                updateRecyclerView()
+            }
+
+        })
+    }
+
+    private fun updateRecyclerView() {
+        val news = ArrayList<Article>()
+        for (i in news){
+            var newTitle = i.title.lowercase(Locale.getDefault())
+            var newsDes = i.description.lowercase(Locale.getDefault())
+            var newsAuther = i.author.lowercase(Locale.getDefault())
+            if(newTitle.contains(searchText) || newsDes.contains(searchText) || newsAuther.contains(searchText)){
+                news.add(i)
+            }
+            if(news.isNotEmpty()){
+                newsAdapter.updateData(news)
+            }
+        }
     }
 
     private fun changeTabBg(selectedCategory: Int) {

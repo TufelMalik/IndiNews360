@@ -1,10 +1,20 @@
 package com.tufelmalik.dailykill.data.classes
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.widget.TextView
+import com.tufelmalik.dailykill.data.model.Article
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
-object Constants {
+object
+Constants {
 
 
     //    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   ChatGTP APi Key
@@ -19,6 +29,52 @@ object Constants {
 
 
 
+    fun setDate(publishedAt: String): String {
+        val timestamp = publishedAt
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date: Date = inputFormat.parse(timestamp)
+        val formattedDate: String = outputFormat.format(date)
+        return formattedDate
+    }
+    fun setDate2Days(published: TextView, publishedAt: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+
+        try {
+            val date: Date = inputFormat.parse(publishedAt)
+            val currentDate = Calendar.getInstance()
+            currentDate.add(Calendar.DAY_OF_MONTH, -1)
+
+            val diffInMilliseconds = currentDate.timeInMillis - date.time
+            val diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMilliseconds)
+
+            val textToShow = when {
+                diffInDays == 0L -> "Today"
+                diffInDays == 1L -> "1 day ago"
+                diffInDays > 1L -> "$diffInDays days ago"
+                else -> "Unknown"
+            }
+
+            published.text = textToShow
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            published.text = "Invalid Date"
+        }
+    }
+    fun shareNews(context: Context?,article: Article){
+        val shareText = "${article.title}\n${article.description}\n\nArticle Image Link://${article.urlToImage}"
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            putExtra(Intent.EXTRA_SUBJECT, "News Article")
+        }
+        val chooser = Intent.createChooser(shareIntent, "Share News Article")
+        if (shareIntent.resolveActivity(context?.packageManager!!) != null) {
+            context?.startActivity(chooser)
+        } else {
+
+        }
+    }
     fun isOnline(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkCapabilities = connectivityManager.activeNetwork ?: return false

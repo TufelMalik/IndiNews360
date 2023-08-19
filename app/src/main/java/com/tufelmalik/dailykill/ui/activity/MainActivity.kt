@@ -2,10 +2,10 @@ package com.tufelmalik.dailykill.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.mainHeader.text = getString(R.string.app_name)
         replaceFragment(NewsFragment())
 
         val apiService = ApiInstance.apiInterface
@@ -38,12 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.idHome_nav -> {
+                R.id.idNews_nav -> {
                     replaceFragment(NewsFragment())
 
                     binding.mainHeader.text = "DailyHunt"
                 }
-                R.id.idFav_nav -> {
+                R.id.idWorld_nav -> {
                     binding.mainHeader.text = "Saved News"
                     replaceFragment(SavedNewsFragment())
                 }
@@ -55,8 +56,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-
-
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

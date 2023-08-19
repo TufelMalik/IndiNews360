@@ -2,6 +2,7 @@ package com.tufelmalik.dailykill.ui.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -10,13 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.tufelmalik.dailykill.R
+import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.databinding.NewsLayoutBinding
 import com.tufelmalik.dailykill.databinding.NewsShimmerLayoutBinding
 import com.tufelmalik.dailykill.ui.activity.NewsActivity
 import java.lang.Exception
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class NewsAdapter(private val context: Context, private var newsList: List<Article>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -26,10 +32,11 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
         private const val VIEW_TYPE_SHIMMER = 1
     }
 
-    fun updateData(list: List<Article>) {
-        newsList = list
+    fun updateData(data: List<Article>) {
+        newsList = data
         notifyDataSetChanged()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
@@ -58,14 +65,11 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
         }
     }
 
-    private fun settingPublishedTime(published: TextView, publishedAt: String) {
-        val timestamp = publishedAt
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        val outputFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date: Date = inputFormat.parse(timestamp)
-        val formattedDate: String = outputFormat.format(date)
-        published.text = formattedDate
-    }
+
+
+
+
+
 
     override fun getItemViewType(position: Int): Int {
         return if (position < newsList.size) {
@@ -79,10 +83,15 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
 
     inner class NewsViewHolder(private val binding: NewsLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
-            binding.tvTitle.text = article.title
+            binding.imgShareNews.setOnClickListener {
+               Constants.shareNews(context,article)
+            }
+
+
+        binding.tvTitle.text = article.title
             Glide.with(context).load(article.urlToImage).thumbnail(Glide.with(context).load(R.drawable.loading)).into(binding.ivArticleImage)
             binding.tvDescription.text = article.description
-            settingPublishedTime(binding.tvPublishedAt, article.publishedAt)
+            Constants.setDate2Days(binding.tvPublishedAt, article.publishedAt)
             try {
                 binding.root.setOnClickListener {
                     val intent = Intent(context, NewsActivity::class.java)

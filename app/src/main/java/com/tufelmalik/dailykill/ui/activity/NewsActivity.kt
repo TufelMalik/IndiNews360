@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
+import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
@@ -52,7 +53,7 @@ class NewsActivity : AppCompatActivity() {
                         binding.txtTitleNewsActivity.text = i.title
                         binding.txtPublishedAtNewsActivity.text = i.publishedAt
                         binding.txtDescriptionNewsActivity.text = i.description
-                        settingPublishedTime(i.publishedAt)
+                        binding.txtPublishedAtNewsActivity.text = Constants.setDate(i.publishedAt)
                     }
                 }
             }
@@ -61,12 +62,5 @@ class NewsActivity : AppCompatActivity() {
 
 
     }
-    private fun settingPublishedTime(publishedAt: String) {
-        val timestamp = publishedAt
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        val outputFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date: Date = inputFormat.parse(timestamp)
-        val formattedDate: String = outputFormat.format(date)
-        binding.txtPublishedAtNewsActivity.text = formattedDate
-    }
+
 }
