@@ -109,6 +109,9 @@ dependencies {
     //  Mewo Bottom Nav
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 
+    //  Lottie Animation
+    implementation "com.airbnb.android:lottie:4.2.0."
+
     //Dagger and Dependency Injection
     //    implementation 'com.google.dagger:hilt-android:2.38.1'
     //    kapt 'com.google.dagger:hilt-compiler:2.38.1'

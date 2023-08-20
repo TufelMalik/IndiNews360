@@ -1,17 +1,16 @@
 package com.tufelmalik.dailykill.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.ActivityMainBinding
 import com.tufelmalik.dailykill.ui.fragments.NewsFragment
-import com.tufelmalik.dailykill.ui.fragments.SavedNewsFragment
+import com.tufelmalik.dailykill.ui.fragments.WorldNewsFragment
 import com.tufelmalik.dailykill.ui.fragments.WeatherFragment
 import com.tufelmalik.dailykill.viewmodel.NewsViewModel
 import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
@@ -45,12 +44,12 @@ class MainActivity : AppCompatActivity() {
                     binding.mainHeader.text = "DailyHunt"
                 }
                 R.id.idWorld_nav -> {
-                    binding.mainHeader.text = "Saved News"
-                    replaceFragment(SavedNewsFragment())
+                    binding.mainHeader.text = "World News"
+                    replaceFragment(WorldNewsFragment())
                 }
                 R.id.idWether_nav -> {
                     binding.mainHeader.text = "Weather Updates"
-                    replaceFragment(WeatherFragment())
+                    startActivity(Intent(this@MainActivity,WheatherActivity::class.java))
                 }
             }
             true

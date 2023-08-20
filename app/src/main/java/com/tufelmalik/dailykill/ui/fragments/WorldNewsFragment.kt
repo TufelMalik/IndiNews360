@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
-import com.tufelmalik.dailykill.databinding.FragmentSavedNewsBinding
+import com.tufelmalik.dailykill.databinding.FragmentWorldNewsBinding
 import com.tufelmalik.dailykill.ui.adapter.NewsAdapter
 import com.tufelmalik.dailykill.viewmodel.NewsViewModel
 import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 
 
-class SavedNewsFragment : Fragment() {
-    private lateinit var binding : FragmentSavedNewsBinding
+class WorldNewsFragment : Fragment() {
+    private lateinit var binding : FragmentWorldNewsBinding
     private lateinit var newsAdapter: NewsAdapter
     val apiService = ApiInstance.apiInterface
     val newsRepository = NewsRepository(apiService)
@@ -33,7 +33,7 @@ class SavedNewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       binding = FragmentSavedNewsBinding.inflate(layoutInflater)
+       binding = FragmentWorldNewsBinding.inflate(layoutInflater)
         val apiService = ApiInstance.apiInterface
         NewsRepository(apiService)
 
