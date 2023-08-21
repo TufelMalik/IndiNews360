@@ -19,12 +19,16 @@ Constants {
 
     //    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   ChatGTP APi Key
     const val NEWS_API_KEY = "f07962ab9a4e4883be33443776ac7e3a"
-    const val CURRENT_WHEATHER_URL = "/current.json"
-    const val WHEATHER_API_KEY = "c62eef365807446cab4175930231608"
+
+//    https://api.openweathermap.org/data/2.5/weather?q=Bharuch&appid=ea9e17e3495e70c73da359f3d882ddae
+
+    const val WHEATHER_API_KEY = "ea9e17e3495e70c73da359f3d882ddae"
+    const val WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/"
+
     const val USA_KEY = "top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"
     const val INDIA_KEY = "top-headlines?country=in&category=business&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"
     const val BASE_URL = "https://newsapi.org/v2/"
-    const val API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a"
+    const val NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a"
 
 
 

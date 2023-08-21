@@ -11,7 +11,6 @@ import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.ActivityMainBinding
 import com.tufelmalik.dailykill.ui.fragments.NewsFragment
 import com.tufelmalik.dailykill.ui.fragments.WorldNewsFragment
-import com.tufelmalik.dailykill.ui.fragments.WeatherFragment
 import com.tufelmalik.dailykill.viewmodel.NewsViewModel
 import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.idWether_nav -> {
                     binding.mainHeader.text = "Weather Updates"
-                    startActivity(Intent(this@MainActivity,WheatherActivity::class.java))
+                    startActivity(Intent(this@MainActivity,WeatherActivity::class.java))
                 }
             }
             true

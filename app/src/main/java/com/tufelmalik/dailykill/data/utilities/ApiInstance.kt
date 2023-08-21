@@ -6,6 +6,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiInstance {
 
+    private val weatherAPI by lazy {
+        Retrofit.Builder()
+            .baseUrl(Constants.WEATHER_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
     private val retorfit by lazy{
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)

@@ -2,27 +2,17 @@ package com.tufelmalik.dailykill.ui.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.databinding.NewsLayoutBinding
 import com.tufelmalik.dailykill.databinding.NewsShimmerLayoutBinding
 import com.tufelmalik.dailykill.ui.activity.NewsActivity
-import java.lang.Exception
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 class NewsAdapter(private val context: Context, private var newsList: List<Article>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -96,6 +86,7 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
                 binding.root.setOnClickListener {
                     val intent = Intent(context, NewsActivity::class.java)
                     intent.putExtra("key", article.urlToImage.trim())
+                    //intent.putExtra("category", category)
                     context.startActivity(intent)
                 }
             } catch (e: Exception) {
