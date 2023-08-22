@@ -193,6 +193,7 @@
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="@dimen/_15sdp"
                 android:hint="Search News"
+                android:inputType="text"
                 android:paddingLeft="@dimen/_15sdp"
                 android:textColor="@color/black"
                 android:textColorHint="#434141" />

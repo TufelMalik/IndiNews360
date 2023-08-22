@@ -10,16 +10,13 @@ import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.ActivityWeatherBinding
 import com.tufelmalik.dailykill.viewmodel.WeatherVMFactory
 import com.tufelmalik.dailykill.viewmodel.WeatherViewModel
-import io.ktor.util.reflect.instanceOf
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWeatherBinding
-    val apiInstance = ApiInstance.apiInterface
-    val weatherRepo = WeatherRepository(apiInstance)
-    val viewModel: WeatherViewModel by viewModels {
+    private val apiInstance = ApiInstance.weatherApi
+    private val weatherRepo = WeatherRepository(apiInstance)
+    private val viewModel: WeatherViewModel by viewModels {
         WeatherVMFactory(weatherRepo)
     }
 
@@ -30,9 +27,18 @@ class WeatherActivity : AppCompatActivity() {
 
 
 
-
-
+//        viewModel.weatherVM.observe(this) { weatherModel ->
+//            binding.txtTemprature.text = weatherModel.main.temp.toString()
+//            binding.txtSunset.text = weatherModel.sys.sunset.toString()
+//            binding.txtSunrise.text = weatherModel.sys.sunrise.toString()
+//            Log.d("WeatherActivity", "Wind Speed : " + weatherModel.wind.speed.toString())
+//        }
+//        getData()
     }
 
-
+    private fun getData() {
+        lifecycleScope.launch {
+            viewModel.fetchWeather("Bharuch")
+        }
+    }
 }

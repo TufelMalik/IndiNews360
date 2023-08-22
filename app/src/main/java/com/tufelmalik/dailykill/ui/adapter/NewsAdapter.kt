@@ -21,12 +21,10 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
         private const val VIEW_TYPE_CONTENT = 0
         private const val VIEW_TYPE_SHIMMER = 1
     }
-
     fun updateData(data: List<Article>) {
         newsList = data
         notifyDataSetChanged()
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val context = parent.context
@@ -54,13 +52,6 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
             }
         }
     }
-
-
-
-
-
-
-
     override fun getItemViewType(position: Int): Int {
         return if (position < newsList.size) {
             VIEW_TYPE_CONTENT

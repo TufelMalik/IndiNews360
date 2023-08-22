@@ -16,13 +16,13 @@ import java.util.concurrent.TimeUnit
 object
 Constants {
 
-
-    //    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   ChatGTP APi Key
+    //    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
     const val NEWS_API_KEY = "f07962ab9a4e4883be33443776ac7e3a"
 
 //    https://api.openweathermap.org/data/2.5/weather?q=Bharuch&appid=ea9e17e3495e70c73da359f3d882ddae
 
-    const val WHEATHER_API_KEY = "ea9e17e3495e70c73da359f3d882ddae"
+
+    const val WHEATHER_API_KEY = "3fabf25f0f20341ba60e8d93ed394822"
     const val WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
     const val USA_KEY = "top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"
@@ -33,7 +33,7 @@ Constants {
 
 
 
-    fun setDate(publishedAt: String): String {
+    fun formateDate(publishedAt: String): String {
         val timestamp = publishedAt
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val outputFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -86,6 +86,8 @@ Constants {
 
         return activeNetwork.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
+
+
 
 
 }

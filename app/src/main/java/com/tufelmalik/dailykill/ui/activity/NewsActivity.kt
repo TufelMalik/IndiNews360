@@ -2,25 +2,34 @@ package com.tufelmalik.dailykill.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
+import com.tufelmalik.dailykill.data.utilities.ApiService
 import com.tufelmalik.dailykill.databinding.ActivityNewsBinding
 import com.tufelmalik.dailykill.viewmodel.NewsViewModel
 import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
-import java.text.SimpleDateFormat
-import java.util.Date
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+@Suppress("DEPRECATION")
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityNewsBinding
+
+
+    val apiService: ApiService = ApiInstance.apiInterface
+    val newsRepository = NewsRepository(apiService)
+    val viewModel: NewsViewModel by viewModels {
+        NewsViewModelFactory(newsRepository)
+    }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,23 +37,23 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         val newsKey = intent.getStringExtra("key")
+//        Log.d("Tufell",viewModel.cat)
 
 
-        val apiService = ApiInstance.apiInterface
-        val newsRepository = NewsRepository(apiService)
-        val viewModel: NewsViewModel by viewModels {
-            NewsViewModelFactory(newsRepository)
-        }
+        /*
+        *   How to get selected tab value here ??
+        * */
 
         binding.btnBackNewsActivtiy.setOnClickListener {
             onBackPressed()
+
         }
 
-        viewModel.indiaNews.observe(this){newsModel->
+        viewModel.indiaNews.observe(this) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
-            val list = ArrayList<Article>()
-            for(i in articleList){
-                if(i.urlToImage == newsKey){
+            ArrayList<Article>()
+            for (i in articleList) {
+                if (i.urlToImage == newsKey) {
                     binding.apply {
                         Glide.with(this@NewsActivity)
                             .load(i.urlToImage)
@@ -53,14 +62,23 @@ class NewsActivity : AppCompatActivity() {
                         binding.txtTitleNewsActivity.text = i.title
                         binding.txtPublishedAtNewsActivity.text = i.publishedAt
                         binding.txtDescriptionNewsActivity.text = i.description
-                        binding.txtPublishedAtNewsActivity.text = Constants.setDate(i.publishedAt)
+                        binding.txtPublishedAtNewsActivity.text =
+                            Constants.formateDate(i.publishedAt)
                     }
                 }
             }
         }
-
-
-
+        getNewsByCategory()
     }
+
+
+    private fun getNewsByCategory() {
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.fetchNewsData()
+            viewModel.getIndianNewsByCategory("tufel")
+        }
+    }
+
+
 
 }

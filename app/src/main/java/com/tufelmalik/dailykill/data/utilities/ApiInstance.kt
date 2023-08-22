@@ -23,5 +23,8 @@ object ApiInstance {
     val apiInterface by lazy {
         retorfit.create(ApiService::class.java)
     }
+    val weatherApi by lazy {
+        weatherAPI.create(ApiService::class.java)
+    }
 
 }
