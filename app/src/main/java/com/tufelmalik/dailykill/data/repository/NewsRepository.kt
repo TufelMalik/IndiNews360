@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.NewsModel
-import com.tufelmalik.dailykill.data.model.weather.WeatherModel
 import com.tufelmalik.dailykill.data.utilities.ApiService
 
 class NewsRepository(private val apiInterface: ApiService) {

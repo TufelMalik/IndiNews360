@@ -1,9 +1,9 @@
 package com.tufelmalik.dailykill.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.repository.NewsRepository
