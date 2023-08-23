@@ -38,14 +38,15 @@ class WorldNewsFragment : Fragment() {
         NewsRepository(apiService)
 
 
-        checkUserNetworkState()
+        isOnlineOrNot()
 
         return binding.root
     }
 
 
-    private fun checkUserNetworkState() {
-        if (Constants.isOnline(requireContext())) {
+    private fun isOnlineOrNot() {
+        val state = viewModel.checkUserNetworkState(requireContext())
+        if (state.first) {
             binding.newsProgressBarFavFrag.isVisible = true
             fetchNews()
             binding.notFoundAnimationFavFrag.isVisible = false

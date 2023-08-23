@@ -1,8 +1,10 @@
 package com.tufelmalik.dailykill.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
@@ -17,9 +19,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Suppress("DEPRECATION")
-class NewsActivity : AppCompatActivity() {
+
+class NewsActivity : AppCompatActivity()  {
     private lateinit var binding : ActivityNewsBinding
+    private lateinit var selectedCategory : String
 
 
     val apiService: ApiService = ApiInstance.apiInterface
@@ -30,25 +33,28 @@ class NewsActivity : AppCompatActivity() {
 
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
         val newsKey = intent.getStringExtra("key")
-//        Log.d("Tufell",viewModel.cat)
-
-
-        /*
-        *   How to get selected tab value here ??
-        * */
 
         binding.btnBackNewsActivtiy.setOnClickListener {
             onBackPressed()
-
         }
 
+
+        viewModel.selectedCategory.observe(this) { cate ->
+           // Toast.makeText(this, "Selected category: $selectedCategory", Toast.LENGTH_SHORT).show()
+            selectedCategory  = cate
+
+            Log.d("mmmmmmm","Selected category: "+selectedCategory.toString())
+        }
+
+
+
+       // Toast.makeText(this@NewsActivity,"Selected : $selectedCategory",Toast.LENGTH_SHORT).show()
         viewModel.indiaNews.observe(this) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
             ArrayList<Article>()
@@ -75,9 +81,10 @@ class NewsActivity : AppCompatActivity() {
     private fun getNewsByCategory() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fetchNewsData()
-            viewModel.getIndianNewsByCategory("tufel")
+            viewModel.getIndianNewsByCategory(selectedCategory)
         }
     }
+
 
 
 

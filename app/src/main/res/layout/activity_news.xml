@@ -25,8 +25,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="1dp">
+                android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,6 +121,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="250dp"
                             android:text="@string/loading"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_14sdp" />
 
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="29dp"
                         android:layout_marginRight="@dimen/_15sdp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:fontFamily="sans-serif-condensed-medium"
                         android:text="@string/loading"
                         android:textAlignment="textStart"

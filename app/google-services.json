@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1031520993563",
+    "project_id": "newsapp-cb016",
+    "storage_bucket": "newsapp-cb016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031520993563:android:441baeca9ae6e53cc1d3be",
+        "android_client_info": {
+          "package_name": "com.tufelmalik.dailykill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031520993563-of4poed0f6lih5btam73vl1gohc93oue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbszxgH5YMpoVzruGbwRkf87g58qy7zZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031520993563-of4poed0f6lih5btam73vl1gohc93oue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

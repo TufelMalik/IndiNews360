@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
@@ -36,6 +34,7 @@ class NewsFragment : Fragment() {
         NewsViewModelFactory(newsRepository)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,20 +44,51 @@ class NewsFragment : Fragment() {
         viewModel.changeTabBg(binding.rbBusinnessNf.id, binding.tabGroupNf) // by default business tab selected...
         newsList = listOf()
 
-        checkUserNetworkState()
+
+
+        //  Checking the user is Online or not ....
+        isOnlineOrNot()
+
+        //  Setting up the recycler view adapter and there layout manager with emptyList...
         setupRecyclerView()
+
+        //  Searching the news according to there 'title' , 'description' and auther name ....
         setupSearch()
 
-        binding.tabGroupNf.setOnCheckedChangeListener { group, checkedId ->
+        /*
+          Handling the background of selected and unselected radioButtons
+          and also getting the api responce according to radioButton value...
+         */
+
+        binding.tabGroupNf.setOnCheckedChangeListener { _ , checkedId ->
             val selectedRadioButton = requireView().findViewById<RadioButton>(checkedId)
             category = selectedRadioButton.text.toString().lowercase()
             viewModel.changeTabBg(checkedId, binding.tabGroupNf)
+            viewModel.setSelectedCategory(category)
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.getIndianNewsByCategory(category)
             }
         }
 
+
+
         return binding.root
+    }
+
+
+
+
+
+    private fun isOnlineOrNot() {
+        val state = viewModel.checkUserNetworkState(requireContext())
+        if (state.first) {
+            binding.newsProgressBar.isVisible = true
+            getNewsByCategory()
+            binding.notFoundAnimationNewsFrag.isVisible = false
+        } else {
+            binding.notFoundAnimationNewsFrag.isVisible = true
+            binding.newsProgressBar.isVisible = false
+        }
     }
 
     private fun setupRecyclerView() {
@@ -91,16 +121,6 @@ class NewsFragment : Fragment() {
         newsAdapter.updateData(filteredNews)
     }
 
-    private fun checkUserNetworkState() {
-        if (Constants.isOnline(requireContext())) {
-            binding.newsProgressBar.isVisible = true
-            getNewsByCategory()
-            binding.notFoundAnimationNewsFrag.isVisible = false
-        } else {
-            binding.notFoundAnimationNewsFrag.isVisible = true
-            binding.newsProgressBar.isVisible = false
-        }
-    }
 
     private fun getNewsByCategory() {
         viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
@@ -111,4 +131,6 @@ class NewsFragment : Fragment() {
             binding.newsProgressBar.isVisible = false // Hide ProgressBar once data is loaded
         }
     }
+
+
 }
