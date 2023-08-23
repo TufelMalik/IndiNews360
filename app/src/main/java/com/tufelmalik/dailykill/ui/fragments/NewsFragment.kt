@@ -3,6 +3,7 @@ package com.tufelmalik.dailykill.ui.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
@@ -23,7 +23,6 @@ import com.tufelmalik.dailykill.viewmodel.NewsViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -41,24 +40,62 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
+        viewModel.changeTabBg(
+            binding.rbBusinnessNf.id,
+            binding.tabGroupNf
+        )
 
-        viewModel.changeTabBg(binding.rbBusinnessNf.id, binding.tabGroupNf) // by default business tab selected...
+
         newsList = listOf()
 
-        checkUserNetworkState()
+
+        fetch()
+        val state = viewModel.checkUserNetworkState(requireContext())
+        if (state.first) {
+            Toast.makeText(context,"Tufel Online", Toast.LENGTH_SHORT).show()
+            binding.newsProgressBar.isVisible = true
+            binding.notFoundAnimationNewsFrag.isVisible = false
+            getNewsByCategory()
+            viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
+                val articleList = newsModel?.articles ?: emptyList()
+                val filteredList = articleList.filter { it.urlToImage != null }
+                newsList = filteredList
+                newsAdapter.updateData(filteredList)
+                Log.d("Tf","Data : $filteredList")
+                binding.newsProgressBar.isVisible = false // Hide ProgressBar once data is loaded
+            }
+        } else if(state.second == "Offline") {
+            Toast.makeText(context,"Tufe Offline",Toast.LENGTH_SHORT).show()
+            binding.notFoundAnimationNewsFrag.isVisible = true
+            binding.newsProgressBar.isVisible = false
+        }else{
+
+        }
+
+
         setupRecyclerView()
         setupSearch()
 
-        binding.tabGroupNf.setOnCheckedChangeListener { group, checkedId ->
-            val selectedRadioButton = requireView().findViewById<RadioButton>(checkedId)
-            category = selectedRadioButton.text.toString().lowercase()
-            viewModel.changeTabBg(checkedId, binding.tabGroupNf)
-            CoroutineScope(Dispatchers.IO).launch {
-                viewModel.getIndianNewsByCategory(category)
+        try {
+            binding.tabGroupNf.setOnCheckedChangeListener { group, checkedId ->
+                val selectedRadioButton = requireView().findViewById<RadioButton>(checkedId)
+                category = selectedRadioButton.text.toString().lowercase()
+                viewModel.changeTabBg(checkedId, binding.tabGroupNf)
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.getIndianNewsByCategory(category)
+                }
             }
+        }catch (e : Exception){
+            Log.d("Tf","Error is : "+e.message.toString())
         }
+            return binding.root
 
-        return binding.root
+    }
+
+    private fun fetch(){
+        CoroutineScope(Dispatchers.IO).launch{
+            viewModel.fetchNewsData()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -73,42 +110,22 @@ class NewsFragment : Fragment() {
         binding.etSearchNewsFrag.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun afterTextChanged(p0: Editable?) {
                 val searchText = p0.toString().lowercase()
-                updateRecyclerView(searchText)
+                viewModel.updateRecyclerView(searchText,newsList,newsAdapter)
             }
         })
     }
 
-    private fun updateRecyclerView(searchText: String) {
-        val filteredNews = newsList.filter { article ->
-            article.title?.lowercase(Locale.getDefault())?.contains(searchText) == true ||
-                    article.description?.lowercase(Locale.getDefault())?.contains(searchText) == true ||
-                    article.author?.lowercase(Locale.getDefault())?.contains(searchText) == true
-        }
 
-        newsAdapter.updateData(filteredNews)
-    }
-
-    private fun checkUserNetworkState() {
-        if (Constants.isOnline(requireContext())) {
-            binding.newsProgressBar.isVisible = true
-            getNewsByCategory()
-            binding.notFoundAnimationNewsFrag.isVisible = false
-        } else {
-            binding.notFoundAnimationNewsFrag.isVisible = true
-            binding.newsProgressBar.isVisible = false
-        }
-    }
-
-    private fun getNewsByCategory() {
-        viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
-            val articleList = newsModel?.articles ?: emptyList()
-            val filteredList = articleList.filter { it.urlToImage != null }
-            newsList = filteredList
-            newsAdapter.updateData(filteredList)
-            binding.newsProgressBar.isVisible = false // Hide ProgressBar once data is loaded
-        }
+     fun getNewsByCategory() {
+//        viewModel.indiaNews.observe(viewLifecycleOwner) { newsModel ->
+//            val articleList = newsModel?.articles ?: emptyList()
+//            val filteredList = articleList.filter { it.urlToImage != null }
+//            newsList = filteredList
+//            newsAdapter.updateData(filteredList)
+//            Log.d("Tf","Data : $filteredList")
+//            binding.newsProgressBar.isVisible = false // Hide ProgressBar once data is loaded
+//        }
     }
 }

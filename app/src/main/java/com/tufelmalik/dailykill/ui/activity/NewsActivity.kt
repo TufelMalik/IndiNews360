@@ -1,8 +1,8 @@
 package com.tufelmalik.dailykill.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
@@ -40,9 +40,6 @@ class NewsActivity : AppCompatActivity() {
 //        Log.d("Tufell",viewModel.cat)
 
 
-        /*
-        *   How to get selected tab value here ??
-        * */
 
         binding.btnBackNewsActivtiy.setOnClickListener {
             onBackPressed()
@@ -75,7 +72,7 @@ class NewsActivity : AppCompatActivity() {
     private fun getNewsByCategory() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fetchNewsData()
-            viewModel.getIndianNewsByCategory("tufel")
+            viewModel.getIndianNewsByCategory("entertainment")
         }
     }
 

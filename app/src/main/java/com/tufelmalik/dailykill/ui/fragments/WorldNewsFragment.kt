@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.FragmentWorldNewsBinding
@@ -45,15 +44,18 @@ class WorldNewsFragment : Fragment() {
 
 
     private fun checkUserNetworkState() {
-        if (Constants.isOnline(requireContext())) {
-            binding.newsProgressBarFavFrag.isVisible = true
-            fetchNews()
-            binding.notFoundAnimationFavFrag.isVisible = false
-        } else {
-            binding.notFoundAnimationFavFrag.isVisible = true
-            binding.newsProgressBarFavFrag.isVisible = false
+            val state = viewModel.checkUserNetworkState(requireContext())
+            if (state.first) {
+                binding.newsProgressBarFavFrag.isVisible = true
+                fetchNews()
+                binding.notFoundAnimationFavFrag.isVisible = false
+            } else {
+                binding.notFoundAnimationFavFrag.isVisible = true
+                binding.newsProgressBarFavFrag.isVisible = false
+            }
         }
-    }
+
+
     private fun fetchNews() {
         viewModel.usaNews.observe(viewLifecycleOwner) { newsModel ->
             val articleList = newsModel?.articles ?: emptyList()
