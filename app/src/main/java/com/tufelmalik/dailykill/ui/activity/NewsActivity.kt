@@ -2,7 +2,6 @@ package com.tufelmalik.dailykill.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -39,16 +38,19 @@ class NewsActivity : AppCompatActivity()  {
         setContentView(binding.root)
         supportActionBar?.hide()
         val newsKey = intent.getStringExtra("key")
+        val cat = intent.getStringExtra("key1")
+        selectedCategory = cat!!
 
         binding.btnBackNewsActivtiy.setOnClickListener {
             onBackPressed()
         }
 
+        Log.d("tufel","\n\n\n\n\n\n\n\n\n......\n\n\n\nCategoty: $cat\n\n\n\n\n\n\n\n......\n\n\n\n\n\n\n\n")
+        //Toast.makeText(this@NewsActivity,"Category ${cat.toString()}",Toast.LENGTH_SHORT).show()
+
 
         viewModel.selectedCategory.observe(this) { cate ->
-           // Toast.makeText(this, "Selected category: $selectedCategory", Toast.LENGTH_SHORT).show()
             selectedCategory  = cate
-
             Log.d("mmmmmmm","Selected category: "+selectedCategory.toString())
         }
 
@@ -59,7 +61,7 @@ class NewsActivity : AppCompatActivity()  {
             val articleList = newsModel?.articles ?: emptyList()
             ArrayList<Article>()
             for (i in articleList) {
-                if (i.urlToImage == newsKey) {
+                if (i.url == newsKey) {
                     binding.apply {
                         Glide.with(this@NewsActivity)
                             .load(i.urlToImage)

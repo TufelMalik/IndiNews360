@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tufelmalik.dailykill.data.classes.MyCategory
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
@@ -55,6 +56,7 @@ class NewsFragment : Fragment() {
         //  Searching the news according to there 'title' , 'description' and auther name ....
         setupSearch()
 
+
         /*
           Handling the background of selected and unselected radioButtons
           and also getting the api responce according to radioButton value...
@@ -65,6 +67,11 @@ class NewsFragment : Fragment() {
             category = selectedRadioButton.text.toString().lowercase()
             viewModel.changeTabBg(checkedId, binding.tabGroupNf)
             viewModel.setSelectedCategory(category)
+            if(category.isEmpty()){
+                MyCategory(viewModel.changeTabBg(checkedId,binding.tabGroupNf).toString())
+            }else{
+                MyCategory(viewModel.changeTabBg(checkedId,binding.tabGroupNf).toString())
+            }
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.getIndianNewsByCategory(category)
             }
@@ -107,6 +114,7 @@ class NewsFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {
                 val searchText = p0.toString().lowercase()
                 updateRecyclerView(searchText)
+
             }
         })
     }
