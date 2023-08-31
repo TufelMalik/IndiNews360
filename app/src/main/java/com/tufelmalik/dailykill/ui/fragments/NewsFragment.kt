@@ -99,7 +99,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter(requireContext(), emptyList())
+        newsAdapter = NewsAdapter(requireContext(), emptyList(), "india")
         binding.newsRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter

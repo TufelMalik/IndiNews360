@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.FragmentWorldNewsBinding
@@ -60,7 +59,7 @@ class WorldNewsFragment : Fragment() {
             val articleList = newsModel?.articles ?: emptyList()
             val filteredList = articleList.filter { it.urlToImage != null }
             if (filteredList.isNotEmpty()) {
-                newsAdapter = NewsAdapter(requireContext(), filteredList)
+                newsAdapter = NewsAdapter(requireContext(), filteredList,"world")
                 newsAdapter.updateData(filteredList)
                 binding.savedNewsRecyclerView.apply {
                     layoutManager = LinearLayoutManager(requireContext())

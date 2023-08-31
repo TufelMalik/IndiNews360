@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
-import com.tufelmalik.dailykill.data.classes.MyCategory
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.databinding.NewsLayoutBinding
 import com.tufelmalik.dailykill.databinding.NewsShimmerLayoutBinding
 import com.tufelmalik.dailykill.ui.activity.NewsActivity
 
-class NewsAdapter(private val context: Context, private var newsList: List<Article>)
+class NewsAdapter(private val context: Context, private var newsList: List<Article>, private var category:  String)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
 
     companion object {
         private const val VIEW_TYPE_CONTENT = 0
@@ -71,23 +69,20 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
             }
 
 
-        binding.tvTitle.text = article.title
+            binding.tvTitle.text = article.title
             Glide.with(context).load(article.urlToImage).thumbnail(Glide.with(context).load(R.drawable.loading)).into(binding.ivArticleImage)
             binding.tvDescription.text = article.description
             Constants.setDate2Days(binding.tvPublishedAt, article.publishedAt)
-            var selectedCat = MyCategory().getCat()
-
             try {
                 binding.root.setOnClickListener {
                     val intent = Intent(context, NewsActivity::class.java)
-                    intent.putExtra("key", article.url.trim())
-                    if(selectedCat.isEmpty()){
-                        intent.putExtra("key1",selectedCat )
-                    }else{
-                        intent.putExtra("key1",selectedCat )
+                    if(category.equals("world")){
+                        intent.putExtra("category",category)
                     }
-
-                    //intent.putExtra("category", category)
+                        intent.putExtra("img", article.urlToImage)
+                        intent.putExtra("title", article.title.trim())
+                        intent.putExtra("des", article.description.trim())
+                        intent.putExtra("date", article.publishedAt.trim())
                     context.startActivity(intent)
                 }
             } catch (e: Exception) {

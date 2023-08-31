@@ -49,6 +49,11 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
             repository.getAllUSANews()
         }
     }
+    fun getAllIndiaNews() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getAllIndiaNews()
+        }
+    }
     fun changeTabBg(selectedCategory: Int, tabGroupNf: RadioGroup) {
         val radioGroup = tabGroupNf
         for (i in 0 until radioGroup.childCount) {
