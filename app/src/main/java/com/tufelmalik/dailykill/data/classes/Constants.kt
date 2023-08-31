@@ -56,9 +56,9 @@ Constants {
             val diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMilliseconds)
 
             val textToShow = when {
-                diffInDays == 0L -> "Today"
-                diffInDays == 1L -> "1 day ago"
-                diffInDays > 1L -> "$diffInDays days ago"
+                diffInDays == 0L -> "1d"
+                diffInDays == 1L -> "2d"
+                diffInDays > 1L -> "${diffInDays+1 }days ago"
                 else -> "Unknown"
             }
 

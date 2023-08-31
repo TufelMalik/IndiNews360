@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/ivArticleImage"
             android:layout_width="371dp"
-            android:layout_height="166dp"
+            android:layout_height="170dp"
             android:background="@drawable/corner"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +31,10 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-condensed-medium"
             android:maxLines="3"
             android:text="TITLE"
             android:textColor="@android:color/black"
@@ -53,11 +53,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="sans-serif-condensed-medium"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_3sdp"
             android:layout_marginBottom="40dp"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-condensed-medium"
             android:maxLines="5"
             android:text="DESCRIPTION"
             android:textColor="@android:color/black"
@@ -68,31 +68,57 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             app:layout_constraintVertical_bias="0.09" />
 
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="#A1000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.238"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+            app:layout_constraintVertical_bias="0.183" />
+
         <TextView
             android:id="@+id/tvPublishedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="PUBLISHED AT"
             android:fontFamily="sans-serif-condensed-medium"
+            android:text="PUBLISHED AT"
+            android:layout_marginLeft="3dp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.764"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-            app:layout_constraintVertical_bias="0.896" />
+            app:layout_constraintStart_toEndOf="@+id/txtAuthor_layout"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/imgShareNews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPublishedAt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.823"
-            app:layout_constraintStart_toEndOf="@+id/tvPublishedAt"
+            app:layout_constraintTop_toTopOf="@+id/tvPublishedAt"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_share" />
+
+        <TextView
+            android:id="@+id/txtAuthor_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="PUBLISHED by"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

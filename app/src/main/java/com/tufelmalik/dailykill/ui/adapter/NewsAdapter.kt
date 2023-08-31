@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
+import com.tufelmalik.dailykill.data.classes.Constants.setDate2Days
 import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.databinding.NewsLayoutBinding
 import com.tufelmalik.dailykill.databinding.NewsShimmerLayoutBinding
@@ -70,9 +71,14 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
 
 
             binding.tvTitle.text = article.title
+            if(article.author == null){
+                binding.txtAuthorLayout.text = context.getString(R.string.indiannews) +  "  |   "
+            }else{
+                binding.txtAuthorLayout.text = article.author + "  |   "
+            }
             Glide.with(context).load(article.urlToImage).thumbnail(Glide.with(context).load(R.drawable.loading)).into(binding.ivArticleImage)
             binding.tvDescription.text = article.description
-            Constants.setDate2Days(binding.tvPublishedAt, article.publishedAt)
+            setDate2Days(binding.tvPublishedAt, article.publishedAt)
             try {
                 binding.root.setOnClickListener {
                     val intent = Intent(context, NewsActivity::class.java)
@@ -80,9 +86,9 @@ class NewsAdapter(private val context: Context, private var newsList: List<Artic
                         intent.putExtra("category",category)
                     }
                         intent.putExtra("img", article.urlToImage)
-                        intent.putExtra("title", article.title.trim())
-                        intent.putExtra("des", article.description.trim())
-                        intent.putExtra("date", article.publishedAt.trim())
+                        intent.putExtra("title", article.title)
+                        intent.putExtra("des", article.description)
+                        intent.putExtra("date", article.publishedAt)
                     context.startActivity(intent)
                 }
             } catch (e: Exception) {
