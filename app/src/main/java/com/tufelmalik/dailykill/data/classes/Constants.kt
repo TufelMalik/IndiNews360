@@ -6,7 +6,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.widget.TextView
 import com.tufelmalik.dailykill.data.model.Article
-import com.tufelmalik.dailykill.data.model.NewsModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -32,7 +31,7 @@ Constants {
     const val BASE_URL = "https://newsapi.org/v2/"
     const val NEWS_API_LINK = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a"
 
-    var newsDataParcable : List<Article>? = null
+
 
 
 
