@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
         android:background="@color/teal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +22,13 @@
             android:id="@+id/main_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.529" />
@@ -46,18 +47,31 @@
 
     </FrameLayout>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/corner"
-        android:layout_margin="@dimen/_6sdp"
+        android:backgroundTint="@color/teal"
+        app:abb_indicatorAppearance="round"
+        app:abb_indicatorHeight="8dp"
+        app:abb_tabColorSelected="@color/gold"
+        android:layout_margin="10dp"
+        app:abb_indicatorMargin="16dp"
+        app:abb_selectedIndex="0"
+        app:abb_tabAnimation="slide"
+        app:abb_indicatorColor="@color/dark_main_color"
+        app:abb_indicatorAnimation="slide"
+        app:abb_indicatorLocation="top"
+        app:abb_rippleColor="@color/teal"
+        app:abb_rippleEnabled="false"
+        app:abb_textSize="17dp"
+        app:abb_iconSize="25dp"
+        app:abb_textStyle="bold"
+        app:abb_selectedTabType="text"
+        app:abb_tabs="@menu/main_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_menu" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

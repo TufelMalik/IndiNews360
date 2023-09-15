@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/idNews_nav"
-        android:icon="@drawable/news_icon"
+        android:icon="@drawable/ic_news"
         android:title="@string/news"
         />
 
     <item
         android:id="@+id/idWorld_nav"
-        android:icon="@drawable/world_logo"
+        android:icon="@drawable/ic_world"
         android:title="@string/world"
         />
 
