@@ -54,6 +54,10 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
         }
     }
 
+
+    fun saveFavNewsInRoom(newsModel: NewsModel){
+        repository.addFavNews(newsModel)
+    }
     fun checkUserNetworkState(context : Context) : Pair<Boolean,String> {
         return if (Constants.isOnline(context)) {
             Pair(true,"Online")

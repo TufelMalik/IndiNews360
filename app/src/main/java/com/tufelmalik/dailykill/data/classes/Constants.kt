@@ -20,11 +20,11 @@ Constants {
     const val NEWS_API_KEY = "f07962ab9a4e4883be33443776ac7e3a"
 
 
-//    https://api.openweathermap.org/data/2.5/weather?q=Bharuch&appid=ea9e17e3495e70c73da359f3d882ddae
+//    https://api.openweathermap.org/data/2.5/weather?q=bharuch&appid=3fabf25f0f20341ba60e8d93ed394822
 
 
     const val WHEATHER_API_KEY = "3fabf25f0f20341ba60e8d93ed394822"
-    const val WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/"
+    const val WEATHER_BASE_URL = "https://api.openweathermap.org/"
 
     const val USA_KEY = "top-headlines?country=us&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"
     const val INDIA_KEY = "top-headlines?country=in&category=business&apiKey=f07962ab9a4e4883be33443776ac7e3a&pageSize=100"

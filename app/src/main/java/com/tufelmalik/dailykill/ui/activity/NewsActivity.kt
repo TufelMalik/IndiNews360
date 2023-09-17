@@ -26,22 +26,22 @@ class NewsActivity : AppCompatActivity()  {
     }
 
 
-        private fun getAllIndiaNews() {
-            val category = intent.getStringExtra("category")
-            if(category.equals("world")){
-                binding.txtHeader.text = getString(R.string.world_news)
-            }
-            val newsKey = intent.getStringExtra("img")
-            val newsTitle = intent.getStringExtra("title")
-            val newsDes = intent.getStringExtra("des")
-            val newsPublishDate = intent.getStringExtra("date")
-
-            Glide.with(this@NewsActivity)
-                .load(newsKey)
-                .thumbnail(Glide.with(this@NewsActivity).load(R.drawable.loading))
-                .into(binding.imgNewsNewsActivity)
-            binding.txtTitleNewsActivity.text = newsTitle
-            binding.txtPublishedAtNewsActivity.text =newsPublishDate
-            binding.txtDescriptionNewsActivity.text = newsDes
+    private fun getAllIndiaNews() {
+        val category = intent.getStringExtra("category")
+        if(category.equals("world")){
+            binding.txtHeader.text = getString(R.string.world_news)
         }
+        val newsKey = intent.getStringExtra("img")
+        val newsTitle = intent.getStringExtra("title")
+        val newsDes = intent.getStringExtra("des")
+        val newsPublishDate = intent.getStringExtra("date")
+
+        Glide.with(this@NewsActivity)
+            .load(newsKey)
+            .thumbnail(Glide.with(this@NewsActivity).load(R.drawable.loading))
+            .into(binding.imgNewsNewsActivity)
+        binding.txtTitleNewsActivity.text = newsTitle
+        binding.txtPublishedAtNewsActivity.text =newsPublishDate
+        binding.txtDescriptionNewsActivity.text = newsDes
+    }
 }

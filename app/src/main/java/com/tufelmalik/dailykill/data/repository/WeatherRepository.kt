@@ -14,7 +14,7 @@ class WeatherRepository(val apiInstance : ApiService) {
     val weather : LiveData<WeatherModel> get() = _weather
 
     suspend fun getWeatherByCity(city: String) {
-        val result = apiInstance.getWeatherByCity(city, "3fabf25f0f20341ba60e8d93ed394822", "metric")
+        val result = apiInstance.getWeatherByCityName(city, "3fabf25f0f20341ba60e8d93ed394822")
         if (result.isSuccessful) {
             Log.d("WeatherActivity", "API Success: ${result.body()}")
             _weather.postValue(result.body())

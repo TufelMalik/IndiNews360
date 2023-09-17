@@ -28,11 +28,10 @@ interface ApiService {
     suspend fun getAllUSANews(): Response<NewsModel>
 
 
-    @GET("weather?")
-    suspend fun getWeatherByCity(
+    @GET("data/2.5/weather")
+    suspend fun getWeatherByCityName(
         @Query("q") city: String,
-        @Query("appid") appid: String,
-        @Query("units") units: String
+        @Query("appid") apiKey: String
     ): Response<WeatherModel>
 
 

@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
                         replaceFragment(WorldNewsFragment())
                     }
                     R.id.idWether_nav -> {
-                        binding.mainHeader.text = "Weather Updates"
                         startActivity(Intent(this@MainActivity,WeatherActivity::class.java))
                     }
                     else->false

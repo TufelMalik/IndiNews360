@@ -132,6 +132,4 @@ class NewsFragment : Fragment() {
             binding.newsProgressBar.isVisible = false // Hide ProgressBar once data is loaded
         }
     }
-
-
 }

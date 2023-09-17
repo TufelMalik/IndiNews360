@@ -1,5 +1,6 @@
 package com.tufelmalik.dailykill.ui.fragments
 
+import NewsDatabase
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class WorldNewsFragment : Fragment() {
     private lateinit var binding : FragmentWorldNewsBinding
     private lateinit var newsAdapter: NewsAdapter
     val apiService = ApiInstance.apiInterface
+//    private val newDao = NewsDatabase.getInstance(requireContext()).newsDao()
     val newsRepository = NewsRepository(apiService)
     val viewModel: NewsViewModel by viewModels {
         NewsViewModelFactory(newsRepository)

@@ -1,14 +1,10 @@
 package com.tufelmalik.dailykill.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import com.tufelmalik.dailykill.R
+import androidx.appcompat.app.AppCompatActivity
 import com.tufelmalik.dailykill.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
@@ -19,10 +15,11 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
             Handler(Looper.getMainLooper()).postDelayed({
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 3000)
+            }, 2200)
     }
 }
