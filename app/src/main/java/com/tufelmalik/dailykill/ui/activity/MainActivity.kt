@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.tufelmalik.dailykill.R
+import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.databinding.ActivityMainBinding
 import com.tufelmalik.dailykill.ui.fragments.NewsFragment
 import com.tufelmalik.dailykill.ui.fragments.WorldNewsFragment
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        checkUserOnline()
         binding.mainHeader.text = getString(R.string.app_name)
         replaceFragment(NewsFragment())
 
@@ -29,6 +31,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun checkUserOnline() {
+        if(Constants.isOnline(this)){
+
+        }else{
+
+        }
     }
 
     private fun setBottomNav(){

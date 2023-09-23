@@ -2,7 +2,6 @@ package com.tufelmalik.dailykill.data.utilities
 
 
 import com.tufelmalik.dailykill.data.classes.Constants
-import com.tufelmalik.dailykill.data.classes.Constants.WHEATHER_API_KEY
 import com.tufelmalik.dailykill.data.model.NewsModel
 import com.tufelmalik.dailykill.data.model.weather.WeatherModel
 import retrofit2.Response
@@ -33,7 +32,6 @@ interface ApiService {
         @Query("q") city: String,
         @Query("appid") apiKey: String
     ): Response<WeatherModel>
-
 
 
 

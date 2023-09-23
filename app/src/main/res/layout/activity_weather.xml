@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="sans-serif-condensed-medium"
+                    android:fontFamily="@font/amaranth"
                     android:text="Wheather Updates"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_21sdp" />
@@ -58,16 +58,16 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/wheather_animation"
-                android:layout_width="152dp"
+                android:layout_width="182dp"
                 android:layout_height="168dp"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/sun_animation" />
+                app:lottie_rawRes="@raw/sun" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/weatherProgressBar"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="104dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/acme"
                 android:text=" "
                 android:textColor="@color/black"
                 android:textSize="@dimen/_59sdp"
@@ -132,7 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:layout_marginTop="4dp"
-                android:text="Bharuch"
+                android:text="Surat"
+                android:fontFamily="@font/amaranth"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -146,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/amaranth"
                 android:text="Today"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_34sdp"
@@ -160,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="136dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/amaranth"
                 android:text=" "
                 android:textColor="@color/black"
                 android:textSize="@dimen/_36sdp"
@@ -175,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/amaranth"
                 android:text="Tuesday"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
@@ -193,7 +194,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="@dimen/_30sdp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:fontFamily="@font/amaranth"
                 android:text="25 July 2023"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
@@ -206,7 +207,6 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
                 android:background="@drawable/wheather_temp_bg"
                 android:orientation="vertical"
                 android:padding="@dimen/_2sdp"
@@ -245,12 +245,14 @@
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text=" "
+                            android:fontFamily="@font/amaranth"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
                             android:text="Humidity"
                             android:textColor="@color/black"
@@ -281,6 +283,7 @@
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text=" "
+                            android:fontFamily="@font/amaranth"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
@@ -288,6 +291,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:text="Wind Speed"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -314,6 +318,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text=" "
@@ -323,6 +328,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
                             android:text="Conditions"
                             android:textColor="@color/black"
@@ -357,6 +363,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
+                            android:fontFamily="@font/amaranth"
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text=" "
                             android:textColor="@color/black"
@@ -366,6 +373,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:text="Sunrise"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -396,6 +404,7 @@
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text=" "
                             android:textColor="@color/black"
+                            android:fontFamily="@font/amaranth"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
@@ -403,6 +412,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Sunset"
+                            android:fontFamily="@font/amaranth"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
@@ -431,12 +441,14 @@
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
                             android:text="TextView"
+                            android:fontFamily="@font/amaranth"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
                             android:text="Sea"
                             android:textColor="@color/black"

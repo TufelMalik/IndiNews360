@@ -1,6 +1,6 @@
 package com.tufelmalik.dailykill.ui.fragments
 
-import NewsDatabase
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

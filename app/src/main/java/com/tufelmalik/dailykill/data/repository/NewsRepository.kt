@@ -2,15 +2,9 @@ package com.tufelmalik.dailykill.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import com.tufelmalik.dailykill.data.classes.Constants
-import com.tufelmalik.dailykill.data.classes.NewsDao
 import com.tufelmalik.dailykill.data.model.NewsModel
 import com.tufelmalik.dailykill.data.utilities.ApiService
-import io.ktor.util.Digest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
