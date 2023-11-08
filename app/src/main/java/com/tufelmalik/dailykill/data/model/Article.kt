@@ -1,7 +1,5 @@
 package com.tufelmalik.dailykill.data.model
 
-
-//@Serializable
 data class Article(
     val source: Source,
     val author: String,

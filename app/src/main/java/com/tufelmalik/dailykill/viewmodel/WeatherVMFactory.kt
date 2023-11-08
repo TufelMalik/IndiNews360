@@ -3,7 +3,6 @@ package com.tufelmalik.dailykill.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.tufelmalik.dailykill.data.model.weather.WeatherModel
 import com.tufelmalik.dailykill.data.repository.WeatherRepository
 
 class WeatherVMFactory(val repository: WeatherRepository) : ViewModelProvider.Factory {

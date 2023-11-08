@@ -10,7 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -20,7 +20,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/con"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -132,8 +133,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:layout_marginTop="4dp"
-                android:text="Surat"
                 android:fontFamily="@font/amaranth"
+                android:text="Surat"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -222,8 +223,9 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_90sdp"
+                        android:layout_width="111dp"
+                        android:layout_height="122dp"
+                        android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/_5sdp"
                         android:background="@drawable/wheather_temp_bg"
@@ -244,16 +246,16 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
-                            android:text=" "
                             android:fontFamily="@font/amaranth"
+                            android:text=" "
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:text="Humidity"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -262,6 +264,7 @@
                     <LinearLayout
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_90sdp"
+                        android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/_5sdp"
                         android:background="@drawable/wheather_temp_bg"
@@ -282,8 +285,8 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
-                            android:text=" "
                             android:fontFamily="@font/amaranth"
+                            android:text=" "
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
@@ -300,6 +303,7 @@
                     <LinearLayout
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="@dimen/_90sdp"
+                        android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/_5sdp"
                         android:background="@drawable/wheather_temp_bg"
@@ -318,9 +322,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/amaranth"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
+                            android:fontFamily="@font/amaranth"
                             android:text=" "
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
@@ -328,8 +332,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:text="Conditions"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -363,8 +367,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
-                            android:fontFamily="@font/amaranth"
                             android:layout_marginBottom="@dimen/_1sdp"
+                            android:fontFamily="@font/amaranth"
                             android:text=" "
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
@@ -402,17 +406,17 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
+                            android:fontFamily="@font/amaranth"
                             android:text=" "
                             android:textColor="@color/black"
-                            android:fontFamily="@font/amaranth"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Sunset"
                             android:fontFamily="@font/amaranth"
+                            android:text="Sunset"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
@@ -440,16 +444,16 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginBottom="@dimen/_1sdp"
-                            android:text="TextView"
                             android:fontFamily="@font/amaranth"
+                            android:text="TextView"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/amaranth"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/amaranth"
                             android:text="Sea"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -458,6 +462,26 @@
 
 
             </LinearLayout>
+
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-7926134352624708/5386183924"
+                app:layout_constraintBottom_toBottomOf="@+id/con"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintVertical_bias="0.058">
+
+            </com.google.android.gms.ads.AdView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

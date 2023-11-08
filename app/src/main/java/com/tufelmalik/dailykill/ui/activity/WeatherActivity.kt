@@ -1,6 +1,5 @@
 package com.tufelmalik.dailykill.ui.activity
 
-import WeatherDao
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -15,9 +14,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.tufelmalik.dailykill.R
-import com.tufelmalik.dailykill.data.classes.Constants.isOnline
-import com.tufelmalik.dailykill.data.classes.WeatherDatabase
 import com.tufelmalik.dailykill.data.repository.WeatherRepository
 import com.tufelmalik.dailykill.data.utilities.ApiInstance
 import com.tufelmalik.dailykill.databinding.ActivityWeatherBinding
@@ -27,6 +26,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.TextStyle
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -34,50 +34,30 @@ import java.util.TimeZone
 class WeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWeatherBinding
     private var selectedCityName = ""
+    private lateinit var mAdView : AdView
     private val apiInstance = ApiInstance.weatherApi
-    private lateinit var weatherDao: WeatherDao
     private val weatherRepo: WeatherRepository by lazy {
-        WeatherRepository(apiInstance)
+        WeatherRepository(apiInstance )
     }
     private val viewModel: WeatherViewModel by viewModels {
         WeatherVMFactory(weatherRepo)
     }
 
-    private val citiesList = listOf(
-        "Delhi", "Mumbai", "Kolkata", "Bangalore", "Chennai", "Hyderabad", "Pune", "Ahmedabad",
-        "Sūrat", "Prayagraj", "Lucknow", "Jaipur", "Cawnpore", "Mirzapur", "Nagpur", "Ghaziabad",
-        "Vadodara", "Vishakhapatnam", "Indore", "Thane", "Bhopal", "Chinchvad", "Patna", "Bilaspur",
-        "Ludhiana", "Agwar", "agra", "Madurai", "Jamshedpur", "Nasik", "Farīdabad", "Aurangabad",
-        "Rajkot", "Meerut", "Jabalpur", "Kalamboli", "Vasai", "Najafgarh", "Varanasi", "Srīnagar",
-        "Dhanbad", "Amritsar", "Alīgarh", "Guwahati", "Haora", "Ranchi", "Gwalior", "Chandīgarh",
-        "Vijayavada", "Jodhpur", "Raipur", "Kota", "Kalkaji Devi", "Bhayandar", "Ambattūr",
-        "Salt Lake City", "Bhatpara", "Kūkatpalli", "Darbhanga", "Dasarhalli", "Muzaffarpur",
-        "Oulgaret", "New Delhi", "Tiruvottiyūr", "Puducherry", "Byatarayanpur", "Pallavaram",
-        "Secunderabad", "Shimla", "Puri", "Shrīrampur", "Hugli", "Chandannagar", "Sultanpur Mazra",
-        "Krishnanagar", "Barakpur", "Bhalswa Jahangirpur", "Nangloi Jat", "Yelahanka", "Titagarh",
-        "Dam Dam", "Bansbaria", "Madhavaram", "Baj Baj", "Nerkunram", "Kendraparha", "Sijua",
-        "Manali", "Chakapara", "Pappakurichchi", "Herohalli", "Madipakkam", "Sabalpur", "Salua",
-        "Balasore", "Jalhalli", "Chinnasekkadu", "Jethuli", "Nagtala", "Bagalūr", "Pakri",
-        "Hunasamaranhalli", "Hesarghatta", "Bommayapalaiyam", "Gundūr", "Punadih", "Hariladih",
-        "Alawalpur", "Madnaikanhalli", "Kadiganahalli", "Mahuli", "Zeyadah Kot", "Arshakunti",
-        "Hīrapur", "Mirchi", "Sonudih", "Sondekoppa", "Babura", "Madavar", "Kadabgeri", "Nanmangalam",
-        "Taliganja", "Tarchha", "Belgharia", "Kammanhalli", "Sonnappanhalli", "Kedihati",
-        "Doddajīvanhalli", "Simli Murarpur", "Sonawan", "Devanandapur", "Tribeni", "Huttanhalli",
-        "Nathupur", "Bali", "Vajarhalli", "Saino", "Shekhpura", "Cachohalli", "Narayanpur Kola",
-        "Gyan Chak", "Kasgatpur", "Kitanelli", "Harchandi", "Santoshpur", "Bendravadi", "Kodagihalli",
-        "Harna Buzurg", "Mailanhalli", "Sultanpur"
-    )
+    private val citiesList = listOf("Agwar", "Agra", "Ahmedabad", "Alīgarh", "Ambattūr", "Amritsar", "Babura", "Bali", "Bansbaria", "Barakpur", "Belgharia", "Bhalswa Jahangirpur", "Bhatpara", "Bhayandar", "Bilaspur", "Bhopal", "Bommayapalaiyam", "Byatarayanpur", "Cachohalli", "Chandannagar", "Chandīgarh", "Chakapara", "Chinnasekkadu", "Chinchvad", "Dhanbad", "Harchandi", "Hariladih", "Hesarghatta", "Herohalli", "Hugli", "Hyderabad", "Jabalpur", "Jalhalli", "Jamshedpur", "Jethuli", "Jodhpur", "Kalamboli", "Kalkaji Devi", "Kammanhalli", "Kasgatpur", "Kendraparha", "Kodagihalli", "Kota", "Krishnanagar", "Kūkatpalli", "Ludhiana", "Madavaram", "Madavar", "Madhavaram", "Mahuli", "Manali", "Meerut", "Mirzapur", "Mirchi", "Muzaffarpur", "Nagpur", "Najafgarh", "Nangloi Jat", "Nasik", "Nathupur", "New Delhi", "Nerkunram", "Puducherry", "Pallavaram", "Pakri", "Prayagraj", "Puri", "Punadih", "Raipur", "Ranchi", "Salua", "Salt Lake City", "Saino", "Santoshpur", "Secunderabad", "Shekhpura", "Shimla", "Shrīrampur", "Simli Murarpur", "Sijua", "Sonawan", "Sondekoppa", "Sonudih", "Sultanpur", "Sultanpur Mazra", "Tiruvottiyūr", "Vadodara", "Vasai", "Vijayavada", "Vishakhapatnam", "Yelahanka", "Zeyadah Kot")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWeatherBinding.inflate(layoutInflater)
         setContentView(binding.root)
        // weatherDao = WeatherDatabase.getInstance(this@WeatherActivity).weatherDao()
-
         val cityDialog = Dialog(this)
         cityDialog.setContentView(R.layout.cities_dialog)
         val etCities = cityDialog.findViewById<Spinner>(R.id.citySpinnerDialog)
         val btnOkCity = cityDialog.findViewById<Button>(R.id.btnOkCityDialog)
+
+
+        MobileAds.initialize(this) {}
+        setAds()
 
         val adapter = ArrayAdapter(
             this@WeatherActivity,
@@ -129,6 +109,7 @@ class WeatherActivity : AppCompatActivity() {
                 val celsiusCharSequence: CharSequence =
                     convertRawTempToActualTemp(weatherModel.main.temp)
                 binding.txtTemprature.text = celsiusCharSequence
+
                 Log.d(
                     "WeatherActivity",
                     "\n\n\n\n...\n\n\n\n\n....n\n\nWind Speed : " + weatherModel.wind.speed.toString()
@@ -141,6 +122,11 @@ class WeatherActivity : AppCompatActivity() {
         getWeatherData("")
     }
 
+    private fun setAds() {
+        mAdView = findViewById(R.id.adView)
+        viewModel.showBannerAds(this,mAdView)
+    }
+
 
     private fun setBgAccordingtoWeather(data: String) {
         val main = data.lowercase()
@@ -149,27 +135,40 @@ class WeatherActivity : AppCompatActivity() {
                 binding.wheatherAnimation.setAnimation(R.raw.rain_animation)
                 binding.weatherActivity.setBackgroundResource(R.drawable.rain_background)
                 binding.wheatherAnimation.playAnimation()
+                ifNight()
             }
             "sunny" -> {
                 binding.wheatherAnimation.setAnimation(R.raw.sun)
                 binding.weatherActivity.setBackgroundResource(R.drawable.sun_sky)
                 binding.wheatherAnimation.playAnimation()
+                ifNight()
+
             }
             "clouds" -> {
                 binding.wheatherAnimation.setAnimation(R.raw.cloud_animaton)
                 binding.weatherActivity.setBackgroundResource(R.drawable.cloudy_sky)
                 binding.wheatherAnimation.playAnimation()
+                ifNight()
+
             }
             "snow" -> {
                 binding.wheatherAnimation.setAnimation(R.raw.snow)
-                binding.weatherActivity.setBackgroundResource(R.drawable.snow_background)
+                binding.weatherActivity.setBackgroundResource(R.drawable.snow)
                 binding.wheatherAnimation.playAnimation()
+                ifNight()
             }
             else -> {
                 binding.wheatherAnimation.setAnimation(R.raw.sun)
                 binding.weatherActivity.setBackgroundResource(R.drawable.sun_sky)
                 binding.wheatherAnimation.playAnimation()
+                ifNight()
             }
+        }
+    }
+
+    private fun ifNight() {
+        if(isDaytimeNow()){
+            binding.btnBackWheather.setBackgroundResource(R.drawable.night_sky)
         }
     }
 
@@ -203,6 +202,11 @@ class WeatherActivity : AppCompatActivity() {
         startActivity(Intent(this@WeatherActivity, MainActivity::class.java))
     }
 
+    fun isDaytimeNow(): Boolean {
+        val calendar = Calendar.getInstance()
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        return currentHour in 6..18 // Assuming daytime is between 6 AM and 6 PM
+    }
     private fun getWeatherData(city: String) {
         val selectedCity = if (city.isEmpty()) "Bharuch" else city
         lifecycleScope.launch {

@@ -6,6 +6,8 @@ import android.widget.RadioGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.tufelmalik.dailykill.R
 import com.tufelmalik.dailykill.data.classes.Constants
 import com.tufelmalik.dailykill.data.model.NewsModel
@@ -22,8 +24,16 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
     val usaNews: LiveData<NewsModel>
         get() = repository.usaNews
 
+
     init {
         fetchNewsData()
+    }
+
+    fun showBannerAds( context : Context,mAdView: AdView) {
+        val adView = AdView(context)
+        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
 
 
@@ -38,11 +48,7 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
             repository.getAllUSANews()
         }
     }
-    fun getAllIndiaNews() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getAllIndiaNews()
-        }
-    }
+
     fun changeTabBg(selectedCategory: Int, tabGroupNf: RadioGroup) {
         for (i in 0 until tabGroupNf.childCount) {
             val radioButton = tabGroupNf.getChildAt(i) as RadioButton
@@ -55,14 +61,11 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
     }
 
 
-    fun saveFavNewsInRoom(newsModel: NewsModel){
-        repository.addFavNews(newsModel)
-    }
-    fun checkUserNetworkState(context : Context) : Pair<Boolean,String> {
-        return if (Constants.isOnline(context)) {
-            Pair(true,"Online")
+    fun checkUserNetworkState(context : Context) : Boolean {
+         if (Constants.isOnline(context)) {
+            return true
         } else {
-            Pair(false,"Offline")
+            return false
         }
     }
 

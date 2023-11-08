@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.fragments.WorldNewsFragment">
+
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,11 +18,10 @@
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-
+        app:layout_constraintVertical_bias="0.986" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/notFound_animation_FavFrag"
@@ -33,20 +36,6 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/no_internet_animation" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/newsProgressBarFavFrag"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_animation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

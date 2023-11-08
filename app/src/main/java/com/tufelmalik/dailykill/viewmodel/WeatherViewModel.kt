@@ -1,10 +1,12 @@
 package com.tufelmalik.dailykill.viewmodel
 
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.tufelmalik.dailykill.data.model.weather.WeatherModel
 import com.tufelmalik.dailykill.data.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
@@ -25,20 +27,13 @@ class WeatherViewModel(val repository: WeatherRepository) : ViewModel() {
         }
     }
 
-//
-//    suspend fun getSavedWeatherData(){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.getAllSavedWeatherData()
-//        }
-//    }
-//
-//    suspend fun saveWeatherData(weatherModel: WeatherModel){
-//        viewModelScope.launch(Dispatchers.IO){
-//            repository.saveWeatherData(weatherModel)
-//        }
-//    }
 
-
+    fun showBannerAds(context : Context, mAdView: AdView) {
+        val adView = AdView(context)
+        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+    }
 
 
 }

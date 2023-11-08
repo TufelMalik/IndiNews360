@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkInfo
+import android.util.Log
 import android.widget.TextView
 import com.tufelmalik.dailykill.data.model.Article
 import java.text.ParseException
@@ -90,7 +92,6 @@ Constants {
 
         return activeNetwork.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
-
 
 
 

@@ -2,7 +2,6 @@ package com.tufelmalik.dailykill.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.tufelmalik.dailykill.data.model.Article
 import com.tufelmalik.dailykill.data.repository.NewsRepository
 
 class NewsViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {

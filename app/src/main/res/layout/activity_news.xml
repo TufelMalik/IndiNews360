@@ -19,15 +19,13 @@
         app:layout_constraintVertical_bias="0.5">
 
 
-
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:background="@color/teal"
@@ -38,22 +36,35 @@
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_7sdp"
                     android:background="@drawable/ic_back_arrow"
-                    android:backgroundTint="@color/white" />
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+
 
                 <TextView
                     android:id="@+id/txtHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="India's News"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_18ssp" />
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnBack_NewsActivtiy"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
 
-            </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
             <ImageView
                 android:id="@+id/imgNews_NewsActivity"
@@ -63,8 +74,8 @@
                 android:background="@drawable/corner"
                 android:backgroundTint="@color/white"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
-
 
 
             <LinearLayout
@@ -74,37 +85,37 @@
                 android:minHeight="@dimen/_400sdp"
                 android:orientation="vertical">
 
+
                 <LinearLayout
-                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="40dp"
                         android:layout_height="5dp"
-                        android:layout_marginTop="30dp"
                         android:layout_gravity="center"
-                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="30dp"
                         android:background="@drawable/corner"
-                        />
+                        android:backgroundTint="@color/white" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginTop="25dp"
                         android:layout_marginRight="@dimen/_11sdp"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="sans-serif-condensed-medium"
                             android:id="@+id/txtTitle_NewsActivity"
                             android:layout_width="wrap_content"
-                            android:layout_marginRight="@dimen/_2sdp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_2sdp"
+                            android:fontFamily="sans-serif-condensed-medium"
                             android:text="@string/loading"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_15sdp"
@@ -132,25 +143,102 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="42dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:layout_marginRight="20dp"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Description: "
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtDescription_NewsActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="29dp"
-                    android:layout_marginRight="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="@string/loading"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_13ssp" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginTop="@dimen/_60sdp">
+
+
+                    <Button
+                        android:id="@+id/btnShareNews"
+                        android:layout_width="@dimen/_136sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@drawable/corner"
+                        android:backgroundTint="#13CF13"
+                        android:drawableRight="@drawable/baseline_ios_share_24"
+                        android:paddingRight="@dimen/_30sdp"
+                        android:text="Share"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/btnTranslateNews"
+                        app:layout_constraintEnd_toStartOf="@+id/btnTranslateNews"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/btnTranslateNews"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <Button
+                        android:id="@+id/btnTranslateNews"
+                        android:layout_width="@dimen/_136sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/corner"
+                        android:backgroundTint="@color/blue"
+                        android:drawableRight="@drawable/baseline_g_translate_24"
+                        android:paddingRight="@dimen/_30sdp"
+                        android:text="Translate"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.981"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+
+                    <Button
+                        android:id="@+id/btnBrowseNews"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:textColor="@color/white"
+                        android:paddingRight="@dimen/_40sdp"
+                        android:drawableRight="@drawable/world"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:backgroundTint="@color/orange"
+                        android:background="@drawable/corner"
+                        android:text="Browse Article"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90dp"
+                    app:adSize="BANNER"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    app:adUnitId="ca-app-pub-7926134352624708/5386183924">
+
+                </com.google.android.gms.ads.AdView>
 
             </LinearLayout>
 

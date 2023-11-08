@@ -2,13 +2,10 @@ package com.tufelmalik.dailykill.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
-
-//@Serializable
 
 @Entity(tableName = "news")
 data class NewsModel(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val coinId : Int? = null,
     val articles: List<Article>,
     val status: String,

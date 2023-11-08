@@ -12,7 +12,7 @@
     <item
         android:id="@+id/idWorld_nav"
         android:iconTint="@color/white"
-        android:icon="@drawable/ic_world"
+        android:icon="@drawable/world_1"
         android:title="@string/world"
         />
 
